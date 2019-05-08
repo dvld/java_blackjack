@@ -30,6 +30,7 @@ public class java_jack {
 				deck.set(k, "King");
 			}
 		}
+		System.out.println(deck);
 	}
 	
 	public static void draw_card(ArrayList hand) {
@@ -48,11 +49,22 @@ public class java_jack {
 	
 	public static void convert_face_cards(ArrayList hand) {
 		for (int i = 0; i < hand.size(); i++) {
-			if ((hand.get(i)).equals("Jack") || (hand.get(i)).equals("Queen") || (hand.get(i)).equals("King")) {
+			if ( (hand.get(i)).equals("Jack") || (hand.get(i)).equals("Queen") || (hand.get(i)).equals("King") ) {
 				hand.set(i, 10);
 			}
 			if ((hand.get(i)).equals("Ace")) {
 				hand.set(i, 11);
+			}
+		}
+		
+	}
+	
+	public static void convert_aces(ArrayList hand, int hand_value) {
+		if (hand_value > 21) {
+			for (int i = 0; i < hand.size(); i++) {
+				if (hand.get(i).equals(11)) {
+					hand.set(i, 1);
+				}
 			}
 		}
 	}
@@ -62,9 +74,7 @@ public class java_jack {
 		int sum = 0;
 		for (int i = 0; i < hand.size(); i++) {
 			sum += (int) hand.get(i);
-			if ((hand.get(i).equals(11)) && sum > 21) {
-				hand.set(i, 1);
-			}
+			convert_aces(hand, sum);
 		}
 		return sum;
 	}
@@ -105,7 +115,7 @@ public class java_jack {
 			show_hands();
 			System.out.println("Tie game");
 		}
-		else if ( ((total(player_hand)) < (total(dealer_hand))) && (total(dealer_hand)) <= 21) {
+		else if ( ( (total(player_hand)) < (total(dealer_hand)) ) && (total(dealer_hand)) <= 21) {
 			show_hands();
 			System.out.println("Dealer wins :(");
 		}
