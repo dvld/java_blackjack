@@ -30,7 +30,7 @@ public class java_jack {
 				deck.set(k, "King");
 			}
 		}
-		System.out.println(deck);
+//		System.out.println(deck);
 	}
 	
 	public static void draw_card(ArrayList hand) {
